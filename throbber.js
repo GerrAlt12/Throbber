@@ -36,7 +36,6 @@ define(["text!throbber.css"], function(cssText) {
 	 *
 	 *
 	 *
-	 *
 	 */
 	
 	return function Throbber(config) {
@@ -89,11 +88,16 @@ define(["text!throbber.css"], function(cssText) {
 			}
 		}
 		
-		function hideThrobber(throbberId) {
-			var index = throbberIds.indexOf(throbberId);
-			if (index != -1) {
-				throbberIds.splice(index, 1);
+		function hideThrobber(throbberId, all) {
+			if (all) {
+				throbberIds.splice(0, throbberIds.length);
+			} else {
+				var index = throbberIds.indexOf(throbberId);
+				if (index != -1) {
+					throbberIds.splice(index, 1);
+				}				
 			}
+
 			if (throbberIds.length < 1) {
 				cfg.hideOverlay();
 			}
@@ -110,9 +114,10 @@ define(["text!throbber.css"], function(cssText) {
 		
 		/**
 		 * @property throbberId - any object which may be stored into array. It should identifictes throbber for correct timing expiration;
+		 * @property {boolean} all - hide all throbbers
 		 */
 		throbber.hide = function(params) {
-			hideThrobber(params.throbberId);
+			hideThrobber(params.throbberId, params.all);
 		};
 		
 		return Object.freeze(throbber);
