@@ -1,0 +1,2 @@
+.throbberGlassOverlay { display: block; position: fixed; top: 0px; left: 0px; min-width: 100%; min-height:100%; width: 100%; height:100%; cursor: wait}
+.throbberGlassOverlayGrayed {background-color: rgba(0, 0, 0, 0.3);}
